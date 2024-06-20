@@ -92,8 +92,8 @@ private _filteredObjects02 = [_extraFilterRocks, _allTerrainObjects, _objectsToS
 
 private _gpotrib = (_data select 1);
 private _case = {};
-if (_gpotrib == "Land_Camping_Light_F") then {_case = 1};  					// this classname requires EBM
-if (_gpotrib == "Land_Small_Stone_02_F") then {_case = 2};  				// this classname requires EBM
+if (_gpotrib == "Land_Camping_Light_F") then {_case = 1};  			// this classname requires EBM
+if (_gpotrib == "Land_Small_Stone_02_F") then {_case = 2};  			// this classname requires EBM
 if (_gpotrib == "PortableHelipadLight_01_green_F") then {_case = 3};  		// this classname requires EBM
 
 switch (_case) do {
