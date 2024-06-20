@@ -60,43 +60,38 @@ _constructionObject setVelocity [0, 0, 0];
 
 //// Filtering objects without assigned terrain type
 // Provide data for the function. You can add as many _extraFilterXX as you want. Be sure to call them down the line
-_extraFilterVegetation = ["fallenbranch"];
-_extraFilterRocks = ["cliff_stone_big_lc_f"];
-_radius = 25;
+private _extraFilterVegetation = ["fallenbranch"];
+private _extraFilterRocks = ["cliff_stone_big_lc_f"];
+private _radius = 25;
 
 // let it cook
-_allTerrainObjects = nearestTerrainObjects [_position, [], _radius];
-_objectsToStrings = _allTerrainObjects apply { format ["%1", _x] };
+private _allTerrainObjects = nearestTerrainObjects [_position, [], _radius];
+private _objectsToStrings = _allTerrainObjects apply { format ["%1", _x] };
 filterObjectsByNamePatterns = {
-    private ["_objectNames", "_allTerrainObjects", "_objectsToStrings", "_matchingIndices", "_filteredObjects"];
 
-    _objectNames = _this select 0;
-    _allTerrainObjects = _this select 1;
-    _objectsToStrings = _this select 2;
-
-    _matchingIndices = [];
+	params ["_objectNames","_allTerrainObjects","_objectsToStrings"];
+    private _matchingIndices = [];
     {
-        _pattern = _x;
+        private _pattern = _x;
         {
-            _index = _forEachIndex;
-            _objectString = _x;
+            private _index = _forEachIndex;
+            private _objectString = _x;
             if (_objectString find _pattern != -1) then {
                 _matchingIndices pushBack _index;
             };
         } forEach _objectsToStrings;
     } forEach _objectNames;
-
-    _filteredObjects = _matchingIndices apply { _allTerrainObjects select _x };
+    private _filteredObjects = _matchingIndices apply { _allTerrainObjects select _x };
     _filteredObjects
 };
 
 // If you added any _extraFilters, include them here. 
-_filteredObjects01 = [_extraFilterVegetation, _allTerrainObjects, _objectsToStrings] call filterObjectsByNamePatterns;
-_filteredObjects02 = [_extraFilterRocks, _allTerrainObjects, _objectsToStrings] call filterObjectsByNamePatterns;
+private _filteredObjects01 = [_extraFilterVegetation, _allTerrainObjects, _objectsToStrings] call filterObjectsByNamePatterns;
+private _filteredObjects02 = [_extraFilterRocks, _allTerrainObjects, _objectsToStrings] call filterObjectsByNamePatterns;
 //// Filtering objects without assigned terrain type END
 
 private _gpotrib = (_data select 1);
-_case = {};
+private _case = {};
 if (_gpotrib == "Land_Camping_Light_F") then {_case = 1};  					// this classname requires EBM
 if (_gpotrib == "Land_Small_Stone_02_F") then {_case = 2};  				// this classname requires EBM
 if (_gpotrib == "PortableHelipadLight_01_green_F") then {_case = 3};  		// this classname requires EBM
@@ -104,7 +99,7 @@ if (_gpotrib == "PortableHelipadLight_01_green_F") then {_case = 3};  		// this 
 switch (_case) do {
 	default		{}; 
 	case 1: 	{
-		_terrainobjects = nearestTerrainObjects [_position, ["TREE", "SMALL TREE", "BUSH"], _radius];
+		private _terrainobjects = nearestTerrainObjects [_position, ["TREE", "SMALL TREE", "BUSH"], _radius];
 		if !(isNil "_filteredObjects01") then {_terrainobjects append _filteredObjects01};		// This is how you add filtered objects without assigned terrain type to be hidden
 		{
 			hideObjectGlobal _x
@@ -112,7 +107,7 @@ switch (_case) do {
 	};
 	
 	case 2: 	{
-	_terrainobjects = nearestTerrainObjects [_position, ["ROCK", "ROCKS﻿"], _radius];
+	private _terrainobjects = nearestTerrainObjects [_position, ["ROCK", "ROCKS﻿"], _radius];
 	if !(isNil "_filteredObjects02") then {_terrainobjects append _filteredObjects02};
 		{
 			hideObjectGlobal _x
@@ -120,7 +115,7 @@ switch (_case) do {
 	};
 	
 	case 3: 	{
-	_terrainobjects = nearestTerrainObjects [_position, ["TREE", "SMALL TREE", "BUSH", "ROCK", "ROCKS﻿"], _radius];
+	private _terrainobjects = nearestTerrainObjects [_position, ["TREE", "SMALL TREE", "BUSH", "ROCK", "ROCKS﻿"], _radius];
 	if !(isNil "_filteredObjects01") then {_terrainobjects append _filteredObjects01};
 	if !(isNil "_filteredObjects02") then {_terrainobjects append _filteredObjects02};
 		{
@@ -128,6 +123,5 @@ switch (_case) do {
 		} foreach _terrainobjects;
 	};
 };
-
 
 _constructionObject
