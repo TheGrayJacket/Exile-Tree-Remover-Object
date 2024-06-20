@@ -1,3 +1,5 @@
+## Provided file is for ExtDB3
+If you're using ExtDB2 (don't) just copy the diff (lines 60 to 124)
 # Exile-Tree-Remover-Object
 This is an altered Tweak for Arma 3 Exile Mod, originally made by ELRabito
 
@@ -5,7 +7,7 @@ I had a problem with some of the objects not being assigned to any of the terrai
 
 I started thinking on how to adjust this code so it can also remove objects without type.
 
-# HOW DOES THIS WORK:
+## HOW DOES THIS WORK:
 
 First of all, you need the object names. Those can be partial (eg. "fallenbranch") or complete ("cliff_stone_big_lc_f.p3d"). To find object names, look at the object you want removed and type "getModelInfo cursorObject" command - you will receive an array in return, and the first value and the one with '.p3d' at the end is the object name.
 
