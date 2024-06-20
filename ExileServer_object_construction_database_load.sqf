@@ -107,7 +107,7 @@ switch (_case) do {
 	};
 	
 	case 2: 	{
-	private _terrainobjects = nearestTerrainObjects [_position, ["ROCK", "ROCKS﻿"], _radius];
+	private _terrainobjects = nearestTerrainObjects [_position, ["ROCK", "ROCKS"], _radius];
 	if !(isNil "_filteredObjects02") then {_terrainobjects append _filteredObjects02};
 		{
 			hideObjectGlobal _x
@@ -115,7 +115,7 @@ switch (_case) do {
 	};
 	
 	case 3: 	{
-	private _terrainobjects = nearestTerrainObjects [_position, ["TREE", "SMALL TREE", "BUSH", "ROCK", "ROCKS﻿"], _radius];
+	private _terrainobjects = nearestTerrainObjects [_position, ["TREE", "SMALL TREE", "BUSH", "ROCK", "ROCKS"], _radius];
 	if !(isNil "_filteredObjects01") then {_terrainobjects append _filteredObjects01};
 	if !(isNil "_filteredObjects02") then {_terrainobjects append _filteredObjects02};
 		{
